@@ -54,6 +54,14 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
             SetCountText();
         }
+        if (other.gameObject.CompareTag("EnemySpawn"))
+        {
+            GameObject Enemy = GameObject.Find("Enemy");
+            if (Enemy != null)
+            {
+            Enemy.SetActive(true);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
