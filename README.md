@@ -5,3 +5,7 @@ Super-MIKU-Ball es un videojuego inspirado en Super Monkey Ball, pero con un gir
 Durante la partida, unas "tetos" persiguen al jugador, añadiendo un elemento de desafío adicional. La banda sonora incluye temas de Shibayan Records y música del género bossa nova, creando una atmósfera única y entretenida.
 
 Este proyecto fue desarrollado en Unity como parte de la materia Computación Gráfica en EAFIT, por Esteban Vergara Giraldo y Samuel Lopera.
+
+### Credits:
+
+Hatsune-Leek credits "BFDIA: Hatsune Leek" (https://skfb.ly/pzCwW) by animalino is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).

@@ -4,8 +4,11 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public GameObject winTextObject;
+    [Header("UI References")]
+    public Canvas uiCanvas;
+    public GameStatsDisplay statsDisplay;
+    
+    [Header("Game Settings")]
     public float speed = 0;
     public int lives = 3;
 
@@ -13,17 +16,66 @@ public class PlayerController : MonoBehaviour
     private Vector3 initialSpawnPos;
     private Transform activeCheckpoint;
     private int score;
+    private int deaths = 0;
+    private float gameTime = 0f;
     private float movementX;
     private float movementY;
+
+    // UI Text references (found automatically)
+    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI timeText;
+    private TextMeshProUGUI deathsText;
+    private TextMeshProUGUI livesText;
+
+    // Public accessors for GameStatsDisplay
+    public TextMeshProUGUI ScoreText => scoreText;
+    public TextMeshProUGUI TimeText => timeText;
+    public TextMeshProUGUI DeathsText => deathsText;
+    public TextMeshProUGUI LivesText => livesText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         score = 0;
+        
+        // Find UI components automatically
+        FindUIComponents();
+        
         SetScoreText();
-        winTextObject.SetActive(false);
+        UpdateDeathsText();
+        UpdateLivesText();
         initialSpawnPos = transform.position;
+    }
+
+    void FindUIComponents()
+    {
+        if (uiCanvas != null)
+        {
+            // Find UI text components by name in the canvas
+            scoreText = FindTextComponentByName("scoreText");
+            timeText = FindTextComponentByName("timeText");
+            deathsText = FindTextComponentByName("deathsText");
+            livesText = FindTextComponentByName("livesText");
+        }
+    }
+
+    TextMeshProUGUI FindTextComponentByName(string componentName)
+    {
+        if (uiCanvas == null) return null;
+        
+        // Search recursively through all children
+        TextMeshProUGUI[] allTexts = uiCanvas.GetComponentsInChildren<TextMeshProUGUI>(true);
+        
+        foreach (var text in allTexts)
+        {
+            if (text.gameObject.name == componentName)
+            {
+                return text;
+            }
+        }
+        
+        return null;
     }
 
     void OnMove(InputValue movementValue)
@@ -36,7 +88,40 @@ public class PlayerController : MonoBehaviour
 
     void SetScoreText()
     {
-        scoreText.text = $"Score: {score}";
+        if (scoreText != null)
+            scoreText.text = $"Score: {score}";
+    }
+
+    void UpdateTimeText()
+    {
+        if (timeText != null)
+        {
+            int minutes = Mathf.FloorToInt(gameTime / 60f);
+            int seconds = Mathf.FloorToInt(gameTime % 60f);
+            timeText.text = $"Time: {minutes:00}:{seconds:00}";
+        }
+    }
+
+    void UpdateDeathsText()
+    {
+        if (deathsText != null)
+        {
+            deathsText.text = $"Deaths: {deaths}";
+        }
+    }
+
+    void UpdateLivesText()
+    {
+        if (livesText != null)
+        {
+            livesText.text = $"Lives: {lives}";
+        }
+    }
+
+    void Update()
+    {
+        gameTime += Time.deltaTime;
+        UpdateTimeText();
     }
 
     private void FixedUpdate()
@@ -62,8 +147,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Goal"))
         {
             // if you reach the goal, you win the game!
-            winTextObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Won!";
+            if (statsDisplay != null)
+            {
+                statsDisplay.ShowWinStats();
+            }
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
         
@@ -85,6 +172,8 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        deaths++; // Count deaths
+        UpdateDeathsText();
         if (lives > 0)
         {
             Respawn();
@@ -112,6 +201,7 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         lives--;
+        UpdateLivesText();
 
         Vector3 respawnPos;
 
@@ -133,8 +223,10 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        winTextObject.gameObject.SetActive(true);
-        winTextObject.GetComponent<TextMeshProUGUI>().text = "Game Over!";
+        if (statsDisplay != null)
+        {
+            statsDisplay.ShowGameOverStats();
+        }
         Destroy(gameObject);
     }
 }

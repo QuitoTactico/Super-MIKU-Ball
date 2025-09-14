@@ -3,7 +3,7 @@ using UnityEngine;
 public class VerticalOscillator : MonoBehaviour
 {
     [SerializeField] private float amplitude = 0.3f; // oscillation range (+/-)
-    [SerializeField] private float frequency = 1f;   // oscillation speed
+    [SerializeField] private float frequency = 5f;   // oscillation speed
 
     private float initialY;
     private float phaseOffset;
