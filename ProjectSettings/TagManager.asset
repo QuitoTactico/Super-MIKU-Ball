@@ -8,6 +8,7 @@ TagManager:
   - PickUp
   - EnemySpawn
   - Goal
+  - Limit
   layers:
   - Default
   - TransparentFX
