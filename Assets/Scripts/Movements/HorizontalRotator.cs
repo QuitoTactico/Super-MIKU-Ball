@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CheckpointRotator : MonoBehaviour
+public class HorizontalRotator : MonoBehaviour
 {
     void Update()
     {
