@@ -4,7 +4,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI countText;
+    public TextMeshProUGUI scoreText;
     public GameObject winTextObject;
     public float speed = 0;
     public int lives = 3;
@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 initialSpawnPos;
     private Transform activeCheckpoint;
-    private int count;
+    private int score;
     private float movementX;
     private float movementY;
 
@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
-        SetCountText();
+        score = 0;
+        SetScoreText();
         winTextObject.SetActive(false);
         initialSpawnPos = transform.position;
     }
@@ -34,16 +34,9 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
-    void SetCountText()
+    void SetScoreText()
     {
-        int totalPickUps = GameObject.FindGameObjectsWithTag("PickUp").Length + count;
-        countText.text = $"Count: {count} / {totalPickUps}";
-
-        if (count >= totalPickUps)
-        {
-            winTextObject.SetActive(true);
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
-        }
+        scoreText.text = $"Score: {score}";
     }
 
     private void FixedUpdate()
@@ -56,11 +49,30 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
+            // get points from the pickup object
+            if (other.TryGetComponent<PickUp>(out var pickUp))
+            {
+                score += pickUp.points;
+            }
+            
             other.gameObject.SetActive(false);
-            count = count + 1;
-            SetCountText();
+            SetScoreText();
         }
         
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            // if you reach the goal, you win the game!
+            winTextObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Won!";
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
+        
+        // player dies when touching limit/border
+        if (other.gameObject.CompareTag("Limit"))
+        {
+            Die();
+        }
+
         if (other.gameObject.CompareTag("EnemySpawn"))
         {
             GameObject Enemy = GameObject.Find("Enemy");
@@ -71,18 +83,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        if (lives > 0)
+        {
+            Respawn();
+        }
+        else
+        {
+            GameOver();
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (lives > 0) // if we have lives left
-            {
-                Respawn();
-            }
-            else // u die bro
-            {
-                GameOver();
-            }
+            Die();
         }
     }
 
