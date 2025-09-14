@@ -4,26 +4,82 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI countText;
-    public GameObject winTextObject;
+    [Header("UI References")]
+    public Canvas uiCanvas;
+    public GameStatsDisplay statsDisplay;
+    
+    [Header("Game Settings")]
     public float speed = 0;
     public int lives = 3;
 
     private Rigidbody rb;
     private Vector3 initialSpawnPos;
     private Transform activeCheckpoint;
-    private int count;
+    private int score;
+    private int deaths = 0;
+    private float gameTime = 0f;
     private float movementX;
     private float movementY;
+
+    // UI Text references (found automatically)
+    private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI timeText;
+    private TextMeshProUGUI deathsText;
+    private TextMeshProUGUI livesText;
+
+    // Public accessors for GameStatsDisplay
+    public TextMeshProUGUI ScoreText => scoreText;
+    public TextMeshProUGUI TimeText => timeText;
+    public TextMeshProUGUI DeathsText => deathsText;
+    public TextMeshProUGUI LivesText => livesText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
-        SetCountText();
-        winTextObject.SetActive(false);
+        score = 0;
+        
+        // Find UI components automatically
+        FindUIComponents();
+        
+        SetScoreText();
+        UpdateDeathsText();
+        UpdateLivesText();
         initialSpawnPos = transform.position;
+    }
+
+    void FindUIComponents()
+    {
+        if (uiCanvas != null)
+        {
+            // Find UI text components by name in the canvas
+            scoreText = FindTextComponentByName("scoreText");
+            timeText = FindTextComponentByName("timeText");
+            deathsText = FindTextComponentByName("deathsText");
+            livesText = FindTextComponentByName("livesText");
+        }
+        else
+        {
+            Debug.LogError("UI Canvas is not assigned!");
+        }
+    }
+
+    TextMeshProUGUI FindTextComponentByName(string componentName)
+    {
+        if (uiCanvas == null) return null;
+        
+        // Search recursively through all children
+        TextMeshProUGUI[] allTexts = uiCanvas.GetComponentsInChildren<TextMeshProUGUI>(true);
+        
+        foreach (var text in allTexts)
+        {
+            if (text.gameObject.name == componentName)
+            {
+                return text;
+            }
+        }
+        
+        return null;
     }
 
     void OnMove(InputValue movementValue)
@@ -34,16 +90,42 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
-    void SetCountText()
+    void SetScoreText()
     {
-        int totalPickUps = GameObject.FindGameObjectsWithTag("PickUp").Length + count;
-        countText.text = $"Count: {count} / {totalPickUps}";
+        if (scoreText != null)
+            scoreText.text = $"Score: {score}";
+    }
 
-        if (count >= totalPickUps)
+    void UpdateTimeText()
+    {
+        if (timeText != null)
         {
-            winTextObject.SetActive(true);
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            int minutes = Mathf.FloorToInt(gameTime / 60f);
+            int seconds = Mathf.FloorToInt(gameTime % 60f);
+            timeText.text = $"Time: {minutes:00}:{seconds:00}";
         }
+    }
+
+    void UpdateDeathsText()
+    {
+        if (deathsText != null)
+        {
+            deathsText.text = $"Deaths: {deaths}";
+        }
+    }
+
+    void UpdateLivesText()
+    {
+        if (livesText != null)
+        {
+            livesText.text = $"Lives: {lives}";
+        }
+    }
+
+    void Update()
+    {
+        gameTime += Time.deltaTime;
+        UpdateTimeText();
     }
 
     private void FixedUpdate()
@@ -56,11 +138,32 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
+            // get points from the pickup object
+            if (other.TryGetComponent<PickUp>(out var pickUp))
+            {
+                score += pickUp.points;
+            }
+            
             other.gameObject.SetActive(false);
-            count = count + 1;
-            SetCountText();
+            SetScoreText();
         }
         
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            // if you reach the goal, you win the game!
+            if (statsDisplay != null)
+            {
+                statsDisplay.ShowWinStats(this);
+            }
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
+        
+        // player dies when touching limit/border
+        if (other.gameObject.CompareTag("Limit"))
+        {
+            Die();
+        }
+
         if (other.gameObject.CompareTag("EnemySpawn"))
         {
             GameObject Enemy = GameObject.Find("Enemy");
@@ -71,18 +174,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        deaths++; // Count deaths
+        UpdateDeathsText();
+        if (lives > 0)
+        {
+            Respawn();
+        }
+        else
+        {
+            GameOver();
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (lives > 0) // if we have lives left
-            {
-                Respawn();
-            }
-            else // u die bro
-            {
-                GameOver();
-            }
+            Die();
         }
     }
 
@@ -95,6 +205,7 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         lives--;
+        UpdateLivesText();
 
         Vector3 respawnPos;
 
@@ -116,8 +227,10 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        winTextObject.gameObject.SetActive(true);
-        winTextObject.GetComponent<TextMeshProUGUI>().text = "Game Over!";
+        if (statsDisplay != null)
+        {
+            statsDisplay.ShowGameOverStats(this);
+        }
         Destroy(gameObject);
     }
 }

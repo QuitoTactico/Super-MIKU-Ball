@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - PickUP
   - PickUp
   - EnemySpawn
+  - Goal
+  - Limit
   layers:
   - Default
   - TransparentFX

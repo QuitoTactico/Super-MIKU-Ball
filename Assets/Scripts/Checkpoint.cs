@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CheckpointRotator))]
+[RequireComponent(typeof(HorizontalRotator))]
 public class Checkpoint : MonoBehaviour
 {
     private static Checkpoint currentActive;
-    private CheckpointRotator checkpointRotator;
+    private HorizontalRotator checkpointRotator;
 
     private void Awake()
     {
-        checkpointRotator = GetComponent<CheckpointRotator>();
+        checkpointRotator = GetComponent<HorizontalRotator>();
         if (checkpointRotator) checkpointRotator.enabled = false;
     }
 
