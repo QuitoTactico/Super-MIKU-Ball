@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
             deathsText = FindTextComponentByName("deathsText");
             livesText = FindTextComponentByName("livesText");
         }
+        else
+        {
+            Debug.LogError("UI Canvas is not assigned!");
+        }
     }
 
     TextMeshProUGUI FindTextComponentByName(string componentName)
@@ -149,7 +153,7 @@ public class PlayerController : MonoBehaviour
             // if you reach the goal, you win the game!
             if (statsDisplay != null)
             {
-                statsDisplay.ShowWinStats();
+                statsDisplay.ShowWinStats(this);
             }
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
@@ -225,7 +229,7 @@ public class PlayerController : MonoBehaviour
     {
         if (statsDisplay != null)
         {
-            statsDisplay.ShowGameOverStats();
+            statsDisplay.ShowGameOverStats(this);
         }
         Destroy(gameObject);
     }
