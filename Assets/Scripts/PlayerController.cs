@@ -142,10 +142,12 @@ public class PlayerController : MonoBehaviour
             if (other.TryGetComponent<PickUp>(out var pickUp))
             {
                 score += pickUp.points;
+                lives += pickUp.healthRestore;
             }
-            
+
             other.gameObject.SetActive(false);
             SetScoreText();
+            UpdateLivesText();
         }
         
         if (other.gameObject.CompareTag("Goal"))
@@ -178,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         deaths++; // Count deaths
         UpdateDeathsText();
-        if (lives > 0)
+        if (lives > 1)
         {
             Respawn();
         }
