@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Level1_real.unity.meta
 guid: 3fa22234185ef4246951879e3487aaa7
+========
+guid: f1a78db5c1e15c34abdd5133c12b0db7
+folderAsset: yes
+>>>>>>>> 90ddf6999378e7601db892a9fe1ab46348eff014:Assets/Imported/Speakers.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

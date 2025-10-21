@@ -1,5 +1,6 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "com.atteneder.gltfast": {
       "version": "https://github.com/atteneder/glTFast.git",
       "depth": 0,
@@ -13,6 +14,8 @@
       },
       "hash": "a77908be91ee0fdb6007e789aeed51f80580039a"
     },
+=======
+>>>>>>> 90ddf6999378e7601db892a9fe1ab46348eff014
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
