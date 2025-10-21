@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7072902099311366354}
   - component: {fileID: 2264996983711521370}
   - component: {fileID: 5402356194682210523}
+  - component: {fileID: 9119560143513137660}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -188,6 +189,14 @@ MonoBehaviour:
   statsDisplay: {fileID: 0}
   speed: 10
   lives: 3
+--- !u!81 &9119560143513137660
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627251239596074790}
+  m_Enabled: 1
 --- !u!1001 &3623141213207314060
 PrefabInstance:
   m_ObjectHideFlags: 0
