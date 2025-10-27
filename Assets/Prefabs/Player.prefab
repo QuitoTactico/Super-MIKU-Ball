@@ -286,15 +286,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1341218885337744611, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1341218885337744611, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.135
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1341218885337744611, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.578
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1341218885337744611, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -333,7 +333,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3952791088975817551, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 4852568209037730061}
   m_SourcePrefab: {fileID: 100100000, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
 --- !u!4 &5180833654371262748 stripped
@@ -358,3 +358,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feace287e410c614c98829eec9bd329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  miku: {fileID: 3876828254269725031}

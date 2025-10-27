@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class PlayerSparks : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Reference")]
+    public Transform miku; // miku model transform
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (miku == null) return;
+
+        // use the inverse of the miku rotation instead of unary minus
+        transform.rotation = Quaternion.Inverse(miku.rotation);
     }
 }
