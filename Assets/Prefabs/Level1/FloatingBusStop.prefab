@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &982437184830191261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7420592143723614929}
+  m_Layer: 0
+  m_Name: FloatingBusStop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &7420592143723614929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982437184830191261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.90807, y: 0, z: 15.32563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5069851396239599836}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6160578555708607397
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7420592143723614929}
+    m_Modifications:
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.03193
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.89563
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.09936907
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.092000134
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9715896
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.19410178
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -23.295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 170.134
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -8.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715953780919713399, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+      propertyPath: m_Name
+      value: BusStopDecor
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+--- !u!4 &5069851396239599836 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1379649004417557369, guid: 5eb6932cf6bb6404da6e7d04e44d4dc0, type: 3}
+  m_PrefabInstance: {fileID: 6160578555708607397}
+  m_PrefabAsset: {fileID: 0}
