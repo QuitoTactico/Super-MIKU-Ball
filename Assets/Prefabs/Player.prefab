@@ -294,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341218885337744611, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1341218885337744611, guid: 2657bc6a7320e6e4a931476276eba83f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -359,3 +359,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   miku: {fileID: 3876828254269725031}
+  distanceBehind: 0.6
