@@ -86,8 +86,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
 
-        movementX = movementVector.x * 0.7f;
-        movementY = movementVector.y * 0.7f;
+        movementX = movementVector.x * 0.6f;
+        movementY = movementVector.y * 0.6f;
     }
 
     void SetScoreText()
