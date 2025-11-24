@@ -720,7 +720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4945624403845622722, guid: 2063cdecb17e7e44ab181e28369684d8, type: 3}
       propertyPath: m_Name
-      value: MusicPlayer
+      value: MusicPlayer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945624403845622722, guid: 2063cdecb17e7e44ab181e28369684d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8237861335390885884, guid: 2063cdecb17e7e44ab181e28369684d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1485,6 +1489,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1033693144883533528, guid: c60dd64ee03ddac40bc57d8a1fd3fe39, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033693144883533528, guid: c60dd64ee03ddac40bc57d8a1fd3fe39, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 1033693144883533528, guid: c60dd64ee03ddac40bc57d8a1fd3fe39, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.4113536
@@ -4631,7 +4643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6876712838846854263, guid: 4ad4ae4e618071640acf808215cde977, type: 3}
       propertyPath: speed
-      value: 15
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6876712838846854263, guid: 4ad4ae4e618071640acf808215cde977, type: 3}
       propertyPath: uiCanvas
@@ -4641,6 +4653,10 @@ PrefabInstance:
       propertyPath: statsDisplay
       value: 
       objectReference: {fileID: 922008811}
+    - target: {fileID: 8518042496908800540, guid: 4ad4ae4e618071640acf808215cde977, type: 3}
+      propertyPath: m_Name
+      value: ParticleSystem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

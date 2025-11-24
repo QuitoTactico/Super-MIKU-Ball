@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public int lives = 3;
 
     private Rigidbody rb;
+    private ParticleSystem[] particleSystems;
     private Vector3 initialSpawnPos;
     private Transform activeCheckpoint;
     private int score;
@@ -34,12 +35,19 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI TimeText => timeText;
     public TextMeshProUGUI DeathsText => deathsText;
     public TextMeshProUGUI LivesText => livesText;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         score = 0;
+
+        particleSystems = GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in particleSystems)
+        {
+            ps.transform.SetParent(null);
+        }
         
         // Find UI components automatically
         FindUIComponents();
@@ -120,7 +128,9 @@ public class PlayerController : MonoBehaviour
     {
         if (livesText != null)
         {
-            livesText.text = $"Lives: {lives}";
+            //livesText.text = $"Lives: {lives}";
+            string heartString = "♥";
+            livesText.text = $"{new string(heartString[0], lives)}";
         }
     }
 
@@ -274,6 +284,13 @@ public class PlayerController : MonoBehaviour
         foreach (Renderer renderer in renderers)
         {
             renderer.enabled = false;
+        }
+        
+        // Disable all particle systems
+        foreach (ParticleSystem ps in particleSystems)
+        {
+            ps.Stop();
+            ps.Clear();
         }
     }
 

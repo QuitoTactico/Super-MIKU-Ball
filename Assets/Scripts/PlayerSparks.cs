@@ -11,7 +11,7 @@ public class PlayerSparks : MonoBehaviour
     void Start()
     {
         // detach from parent to avoid inheriting rotations
-        transform.SetParent(null);
+        //transform.SetParent(null);
     }
 
     void LateUpdate()
@@ -34,6 +34,6 @@ public class PlayerSparks : MonoBehaviour
         }
 
         // keep rotation fixed in world space (identity = no rotation)
-        //transform.rotation = Quaternion.identity;
+        transform.rotation = Quaternion.identity;
     }
 }
