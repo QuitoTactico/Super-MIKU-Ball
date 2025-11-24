@@ -10,9 +10,21 @@ Este proyecto fue desarrollado en Unity como parte de la materia Computación Gr
 
 ## Demo:
 
+<details>
+  <summary align="center">
+     First Version:
+  </summary>  
+
 https://github.com/user-attachments/assets/3f0c9365-c3e8-4daa-9e40-b3331aa91b0d
+
+</details>
 
 ### Credits:
 
 Hatsune-Leek credits "BFDIA: Hatsune Leek" (https://skfb.ly/pzCwW) by animalino is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
+Noto Sans JP font by Google (https://fonts.google.com/specimen/Noto+Sans+JP) is licensed under SIL Open Font License, Version 1.1 (http://scripts.sil.org/OFL).
+
+All music tracks used in this game are sourced from Shibayan Records (https://shibayanrecords.com/).
+
+Final Fantasy Win Theme by Nobuo Uematsu is licensed under Square Enix Terms of Use (https://square-enix-games.com/en_US/legal/terms).
