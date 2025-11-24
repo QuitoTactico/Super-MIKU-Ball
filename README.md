@@ -6,11 +6,14 @@ La banda sonora incluye temas de Shibayan Records y música del género bossa no
 
 Este proyecto fue desarrollado en Unity como parte de la materia Computación Gráfica en EAFIT, por Esteban Vergara Giraldo y Samuel Lopera.
 
-## [[ Link de Descarga ]](https://github.com/QuitoTactico/Super-MIKU-Ball/releases/download/v0.2.1/Super.Miku.Ball.zip)
+## [[ Link de Descarga ]](https://github.com/QuitoTactico/Super-MIKU-Ball/releases/download/v0.3/SuperMikuBall_Windows.rar)
 
 ## Demo:
 
+https://github.com/user-attachments/assets/af34226f-7e43-4e3e-8305-5bd2e373a888
+
 <details>
+
   <summary align="center">
      First Version:
   </summary>  
