@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class MusicController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class MusicController : MonoBehaviour
     public PlayerController player;
     public AudioSource musicPlayer;
     public AudioSource musicPlayerWin;
+    public TextMeshProUGUI songText;
     
     private bool winMusicPlayed = false;
     
@@ -56,11 +58,23 @@ public class MusicController : MonoBehaviour
             musicPlayer.clip = ostClips[randomIndex];
             musicPlayer.Play();
             
-            Debug.Log($"Now playing: {ostClips[randomIndex].name}");
+            // Update song title text (remove .mp3 extension if present)
+            string songTitle = ostClips[randomIndex].name;
+            UpdateSongText(songTitle);
+            
+            Debug.Log($"Now playing: {songTitle}");
         }
         else
         {
             Debug.LogWarning("No OST files found in Resources/Audio/OST");
+        }
+    }
+    
+    private void UpdateSongText(string songTitle)
+    {
+        if (songText != null)
+        {
+            songText.text = songTitle;
         }
     }
 }
