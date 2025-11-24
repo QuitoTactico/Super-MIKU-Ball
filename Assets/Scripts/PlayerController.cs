@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private float gameTime = 0f;
     private float movementX;
     private float movementY;
+    private bool gameEnded = false;
 
     // UI Text references (found automatically)
     private TextMeshProUGUI scoreText;
@@ -124,14 +126,34 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        gameTime += Time.deltaTime;
-        UpdateTimeText();
+        if (!gameEnded)
+        {
+            gameTime += Time.deltaTime;
+            UpdateTimeText();
+        }
+        else
+        {
+            // Check for restart input
+            if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                RestartLevel();
+            }
+            
+            // Check for gamepad button (A/X button)
+            if (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
+            {
+                RestartLevel();
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement * speed);
+        if (!gameEnded)
+        {
+            Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+            rb.AddForce(movement * speed);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -153,6 +175,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Goal"))
         {
             // if you reach the goal, you win the game!
+            EndGame();
             if (statsDisplay != null)
             {
                 statsDisplay.ShowWinStats(this);
@@ -229,10 +252,34 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
+        EndGame();
         if (statsDisplay != null)
         {
             statsDisplay.ShowGameOverStats(this);
         }
-        Destroy(gameObject);
+    }
+
+    private void EndGame()
+    {
+        gameEnded = true;
+        // Stop the player completely
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true; // Make it not react to physics anymore
+        //Destroy(gameObject);
+        //gameObject.GetComponent<MeshRenderer>().enabled = false;
+        
+        // Make all renderers invisible (this GameObject and all children)
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.enabled = false;
+        }
+    }
+
+    private void RestartLevel()
+    {
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
