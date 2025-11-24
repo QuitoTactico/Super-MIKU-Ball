@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float movementY;
     private bool gameEnded = false;
     public bool gameWon = false;
-    private bool gameLost = false;
+    //private bool gameLost = false;
 
     // UI Text references (found automatically)
     private TextMeshProUGUI scoreText;
@@ -138,24 +138,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!gameEnded)
+        gameTime += Time.deltaTime;
+        UpdateTimeText();
+        
+        // Check for restart input
+        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
-            gameTime += Time.deltaTime;
-            UpdateTimeText();
+            RestartLevel();
         }
-        else
+        
+        // Check for gamepad button (A/X button)
+        if (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
         {
-            // Check for restart input
-            if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
-            {
-                RestartLevel();
-            }
-            
-            // Check for gamepad button (A/X button)
-            if (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame)
-            {
-                RestartLevel();
-            }
+            RestartLevel();
         }
     }
 
@@ -265,7 +260,7 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        gameLost = true;
+        //gameLost = true;
         EndGame();
         if (statsDisplay != null)
         {

@@ -258,7 +258,6 @@ MonoBehaviour:
   scoreText: {fileID: 8306329043867541439}
   timeText: {fileID: 3778917675125295968}
   deathsText: {fileID: 5282797638345544691}
-  player: {fileID: 0}
 --- !u!1 &5312978490320100588
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +429,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 60}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 600, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4106633089534748959
 CanvasRenderer:

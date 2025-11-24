@@ -25,11 +25,18 @@ public class MusicController : MonoBehaviour
             if (musicPlayerWin != null)
             {
                 musicPlayerWin.gameObject.SetActive(true);
+                musicPlayer.gameObject.SetActive(false);
             }
         }
-        
+
         // Press M to randomize OST
         if (Keyboard.current != null && Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            PlayRandomOST();
+        }
+        
+        // Check for gamepad button as well (B/O button)
+        if (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame)
         {
             PlayRandomOST();
         }

@@ -16,7 +16,7 @@ public class GameStatsDisplay : MonoBehaviour
 
     public void ShowWinStats(PlayerController player)
     {
-    ShowStats("You Win!!\nPress R to restart", player);
+    ShowStats("You Won!!\nPress R to restart", player);
     }
 
     public void ShowGameOverStats(PlayerController player)

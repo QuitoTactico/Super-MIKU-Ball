@@ -132,6 +132,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5402356194682210523, guid: 27c1351ae983fbd4a96da9b5ef9be8c5, type: 3}
+      propertyPath: speed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179249316401352368, guid: 27c1351ae983fbd4a96da9b5ef9be8c5, type: 3}
+      propertyPath: m_Name
+      value: ParticleSystem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
