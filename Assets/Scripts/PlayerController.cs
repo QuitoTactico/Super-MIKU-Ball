@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
             {
                 statsDisplay.ShowWinStats(this);
             }
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            //Destroy(GameObject.FindGameObjectWithTag("Enemy"));
         }
         
         // player dies when touching limit/border

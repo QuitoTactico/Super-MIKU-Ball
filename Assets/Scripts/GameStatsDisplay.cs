@@ -16,12 +16,12 @@ public class GameStatsDisplay : MonoBehaviour
 
     public void ShowWinStats(PlayerController player)
     {
-        ShowStats("You Win!!!", player);
+    ShowStats("You Win!!\nPress R to restart", player);
     }
 
     public void ShowGameOverStats(PlayerController player)
     {
-        ShowStats("Game Over!", player);
+        ShowStats("Game Over!\nPress R to restart", player);
     }
 
     private void ShowStats(string title, PlayerController player)
