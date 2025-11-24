@@ -10,6 +10,8 @@ Este proyecto fue desarrollado en Unity como parte de la materia Computación Gr
 
 ## Demo:
 
+https://github.com/user-attachments/assets/6d441186-5a95-4fea-b224-6bcd1d295364
+
 https://github.com/user-attachments/assets/af34226f-7e43-4e3e-8305-5bd2e373a888
 
 <details>
