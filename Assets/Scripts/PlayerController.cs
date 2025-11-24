@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     private bool gameEnded = false;
+    public bool gameWon = false;
+    private bool gameLost = false;
 
     // UI Text references (found automatically)
     private TextMeshProUGUI scoreText;
@@ -185,6 +187,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Goal"))
         {
             // if you reach the goal, you win the game!
+            gameWon = true;
             EndGame();
             if (statsDisplay != null)
             {
@@ -262,6 +265,7 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
+        gameLost = true;
         EndGame();
         if (statsDisplay != null)
         {
